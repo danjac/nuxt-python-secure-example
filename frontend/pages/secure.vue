@@ -8,11 +8,7 @@
 
 <script>
 export default {
-  fetch ({ store, redirect }) {
-    if (!store.state.user) {
-      redirect('/login')
-    }
-  },
+  middleware: 'authenticated',
   async asyncData ({ app }) {
     const payload = await app.$axios.$get('/api/secure/')
     return { msg: payload.message }
