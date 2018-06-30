@@ -5,11 +5,15 @@ const csurf = require('csurf')
 const proxy = require('http-proxy-middleware')
 const axios = require('axios')
 const app = require('express')()
+const RedisStore = require('connect-redis')(session);
 
 let config = require('./nuxt.config')
 config.isDev = process.env.NODE_ENV !== 'production'
 
 app.use(session({
+  store: new RedisStore({
+
+  }),
   secret: 'super-secret-key', // TBD: grab from env
   resave: false,
   saveUninitialized: false,
