@@ -24,7 +24,7 @@ def login():
         and request.json["password"] == "demo"
     ):
         return jsonify({"token": "12345"})
-    abort(401)
+    abort(400)
 
 
 @app.route("/api/me/", methods=["GET"])

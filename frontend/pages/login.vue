@@ -32,7 +32,7 @@ export default {
       })
       if (this.$store.state.user) {
         this.$toast.success('Welcome back!')
-        this.$router.push('/')
+        this.$router.push(decodeURIComponent(this.$route.query.next) || '/')
       }
     }
   }
