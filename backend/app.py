@@ -21,4 +21,4 @@ def login():
 def secure():
     if request.headers.get("Authorization") == "Bearer 12345":
         return jsonify({"message": "this is fine"})
-    abort(403)
+    abort(401)
