@@ -13,19 +13,18 @@ const store = () => new Vuex.Store({
     }
   },
   actions: {
-    nuxtServerInit ({ commit }, { req, app }) {
-      if (req.session && req.session.user) {
-        commit('SET_USER', req.session.user)
+    async nuxtServerInit ({ commit }, { req, app }) {
+      if (req.session.authToken) {
+          const data = await app.$axios.$get('/api/me/')
+          commit('SET_USER', data)
+      } else {
+          commit('SET_USER', null)
       }
     },
     async login ({ commit }, creds) {
-      try {
-        const data = await this.$axios.$post('/auth/login/', creds)
+        await this.$axios.$post('/auth/login/', creds)
+        const data = await this.$axios.$get('/api/me/')
         commit('SET_USER', data)
-      } catch (e) {
-        console.log('error', e)
-        commit('SET_USER', null)
-      }
     },
     logout({ commit }) {
       commit('SET_USER', null)
