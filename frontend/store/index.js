@@ -28,7 +28,7 @@ const store = () => new Vuex.Store({
     },
     logout({ commit }) {
       commit('SET_USER', null)
-      this.$axios.post('/auth/logout/')
+      this.$axios.$post('/auth/logout/')
     }
   }
 })

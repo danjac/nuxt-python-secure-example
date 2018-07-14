@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Secret page</h1>
-    <router-link to="/">Home</router-link>
+    <nuxt-link to="/">Home</nuxt-link>
     <p>Secure message: {{ msg }}</p>
   </div>
 </template>
