@@ -22,6 +22,7 @@ app.use(session({
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
     secure: !config.isDev, // require HTTPS in production
+    sameSite: 'lax',
   }
 }))
 
